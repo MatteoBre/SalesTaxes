@@ -8,7 +8,8 @@ import org.junit.Test;
 import product_operations.taxes.BasicSalesTaxVisitor;
 import product_operations.taxes.ImportDutyVisitor;
 import product_operations.taxes.TaxVisitor;
-import products.Book;
+import products.Product;
+import products.ProductType;
 import utility.Utility;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class OutputReceiptVisitorTest {
 
     @Test
     public void productReceiptTest(){
-        Book book = new Book("book", 10.49, 4);
+        Product book = new Product("book", ProductType.BOOK, 10.49, 4);
         String actualReceipt = visitor.getReceipt(book);
         String expectedReceipt = "4 book: 41.96\r\n";
         Assert.assertEquals(actualReceipt, expectedReceipt);

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class OutputReceiptVisitor implements ReceiptVisitor{
-    private List<TaxVisitor> taxes;
+    private final List<TaxVisitor> taxes;
 
     public OutputReceiptVisitor(List<TaxVisitor> taxes) {
         this.taxes = taxes;

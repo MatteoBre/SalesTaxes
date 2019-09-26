@@ -5,15 +5,17 @@ import product_operations.taxes.TaxVisitor;
 
 public class Product implements Component{
     private final double price;
+    private final ProductType productType;
     private final String name;
     private final int quantity;
 
-    public Product(String name, double price){
-        this(name, price, 1);
+    public Product(String name, ProductType productType, double price){
+        this(name, productType, price, 1);
     }
 
-    public Product(String name, double price, int quantity){
+    public Product(String name, ProductType productType, double price, int quantity){
         this.name = name;
+        this.productType = productType;
         this.price = approximatePrice(price);
         this.quantity = quantity;
     }
@@ -24,6 +26,10 @@ public class Product implements Component{
 
     public double getPrice() {
         return price;
+    }
+
+    public ProductType getProductType() {
+        return productType;
     }
 
     public int getQuantity() {

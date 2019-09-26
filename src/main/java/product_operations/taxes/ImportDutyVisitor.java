@@ -8,7 +8,7 @@ public class ImportDutyVisitor implements TaxVisitor {
     private final double importDuty;
 
     public ImportDutyVisitor(){
-        importDuty = 0.05;
+        this(0.05);
     }
 
     public ImportDutyVisitor(double importDuty) {

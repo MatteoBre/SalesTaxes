@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import products.Product;
+import products.ProductType;
 import utility.Utility;
 
 public class ImportDutyVisitorTest {
@@ -18,7 +19,7 @@ public class ImportDutyVisitorTest {
 
     @Test
     public void productTaxesTest(){
-        Product chair = new Product("imported chair", 24.99, 25);
+        Product chair = new Product("imported chair", ProductType.STANDARD, 24.99, 25);
         double actualTaxes = visitor.getTaxes(chair);
         double expectedTaxes = TaxVisitor.roundTax(24.99 * 0.05) * 25;
         Assert.assertEquals(actualTaxes, expectedTaxes, 0);

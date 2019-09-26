@@ -5,7 +5,8 @@ import basket.ShoppingBasket;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import products.Book;
+import products.Product;
+import products.ProductType;
 import utility.Utility;
 
 public class InputReceiptVisitorTest {
@@ -18,7 +19,7 @@ public class InputReceiptVisitorTest {
 
     @Test
     public void productReceiptTest(){
-        Book book = new Book("book", 10.49, 4);
+        Product book = new Product("book", ProductType.BOOK, 10.49, 4);
         String actualReceipt = visitor.getReceipt(book);
         String expectedReceipt = "4 book at 10.49\r\n";
         Assert.assertEquals(actualReceipt, expectedReceipt);

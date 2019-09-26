@@ -3,22 +3,28 @@ package product_operations.taxes;
 import application.Application;
 import basket.ShoppingBasket;
 import products.Product;
-import special_product_traits.NoBasicSalesTax;
+import products.ProductType;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class BasicSalesTaxVisitor implements TaxVisitor {
     private final double basicSalesTax;
+    private final List<ProductType> noBasicSalesTaxEnums;
 
     public BasicSalesTaxVisitor(){
-        basicSalesTax = 0.1;
+        this(0.1);
     }
 
     public BasicSalesTaxVisitor(double basicSalesTax) {
         this.basicSalesTax = basicSalesTax;
+        noBasicSalesTaxEnums = new ArrayList<>(Arrays.asList(ProductType.BOOK, ProductType.FOOD, ProductType.MEDICAL));
     }
 
     @Override
     public double getTaxes(Product product) {
-        return !(product instanceof NoBasicSalesTax) ? TaxVisitor.roundTax(
+        return !(noBasicSalesTaxEnums.contains(product.getProductType())) ? TaxVisitor.roundTax(
                 product.getPrice() * basicSalesTax) * product.getQuantity() : 0;
     }
 
