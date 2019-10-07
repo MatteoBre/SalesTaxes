@@ -1,4 +1,5 @@
 import application.Application;
+import basket.ShoppingBasket;
 import product_operations.receipts.InputReceiptVisitor;
 import product_operations.receipts.OutputReceiptVisitor;
 import product_operations.taxes.BasicSalesTaxVisitor;
@@ -13,11 +14,9 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         Application application = Utility.getApplication();
-
         BasicSalesTaxVisitor basicSalesTaxes = new BasicSalesTaxVisitor();
         ImportDutyVisitor importDuties = new ImportDutyVisitor();
         List<TaxVisitor> taxes = new ArrayList<>(Arrays.asList(basicSalesTaxes, importDuties));
-
         InputReceiptVisitor inputReceipt = new InputReceiptVisitor();
         OutputReceiptVisitor outputReceipt = new OutputReceiptVisitor(taxes);
         System.out.println(inputReceipt.getReceipt(application) + outputReceipt.getReceipt(application));
